@@ -1,0 +1,753 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./CSS/style.css">
+    <link rel="stylesheet" href="./CSS/responsive.css">
+    <title>Quiz Game</title>
+</head>
+
+<body>
+    <div class="main-display">
+        <h1>Quiz Game</h1>
+        <div class="buttons">
+            <button onclick="easy()">Beginners</button>
+            <button onclick="normal()">Advancers</button>
+            <button onclick="hard()">Professionals</button>
+        </div>
+
+    </div>
+    <div class="main-game disable">
+        <div class="game-Questions">
+            <div class="game">
+                <div class="notification">
+                <div class="life"></div>
+                <div class="timer"></div>
+            </div>
+                <h1 id="heading"></h1>
+
+                <div class="options">
+                    <input type="radio" class="radio" id="ans1" name="option">
+                    <label for="ans1" id="option1"></label>
+                </div>
+                <div class="options">
+                    <input type="radio" class="radio" id="ans2" name="option">
+                    <label for="ans2" id="option2"></label>
+                </div>
+                <div class="options">
+                    <input type="radio" class="radio" id="ans3" name="option">
+                    <label for="ans3" id="option3"></label>
+                </div>
+                <div class="options">
+                    <input type="radio" class="radio" id="ans4" name="option">
+                    <label for="ans4" id="option4"></label>
+                </div>
+            </div>
+            <input type="submit" id="submit">
+        </div>
+    </div>
+    </div>
+    <div id="game-over" class="none"></div>
+    <audio src="./sound/sound.mp3">
+        
+    </audio>
+    </div>
+
+    <script>
+
+        let beginners = [
+            {
+                Question: "What is HTML?",
+                option1: "HTML describes the structure of a webpage",
+                option2: "HTML is the standard markup language mainly used to create web pages",
+                option3: "HTML consists of a set of elements that helps the browser how to view the content",
+                option4: "All of the mentioned ",
+                answer: "ans1"
+            },
+            {
+                Question: "HTML stands for _______?",
+                option1: "Hyper Text Markup Language",
+                option2: "High Text Markup Language",
+                option3: "Hyper Text Machine Language",
+                option4: "Hyper Tag Markup Language ",
+                answer: "ans1"
+            },
+            {
+                Question: "What is the correct syntax of doctype in HTML5?",
+                option1: "</doctype html>",
+                option2: "<doctype html>",
+                option3: "<doctype html!>",
+                option4: "<!doctype html> ",
+                answer: "ans4"
+            },
+            {
+                Question: "Which of the following tag is used for inserting the largest heading in HTML?",
+                option1: "Head",
+                option2: "<h1>",
+                option3: "<h6>",
+                option4: "heading",
+                answer: "ans2"
+            },
+            {
+                Question: "In which part of the HTML metadata is contained?",
+                option1: "body tag",
+                option2: "title tag",
+                option3: "html tag",
+                option4: "head tag",
+                answer: "ans4"
+            },
+            {
+                Question: "Which element is used to get highlighted text in HTML5?",
+                option1: "<u>",
+                option2: "<mark>",
+                option3: "<highlight>",
+                option4: "<b>",
+                answer: "ans2"
+            },
+            {
+                Question: "CSS stands for _______?",
+                option1: "Cascading Style System",
+                option2: "Coading Style System",
+                option3: "Cascading Style Sheets",
+                option4: "Coading Style Sheets",
+                answer: "ans3"
+            },
+            {
+                Question: "What is the preferred way for adding a background color in HTML?",
+                option1: "<body background='yellow'>",
+                option2: "<background>yellow</background>",
+                option3: "< body style='background-color:yellow'>",
+                option4: "<background color='yellow'>text<background>",
+                answer: "ans3"
+            },
+            {
+                Question: "Which CSS selector is used to specify a particular unique element?",
+                option1: "Class selector",
+                option2: "Type selector",
+                option3: "Universal selector",
+                option4: "ID selector",
+                answer: "ans4"
+            },
+            {
+                Question: "What is the correct HTML for creating a hyperlink?",
+                option1: "<a name=''>A</a>",
+                option2: "<a href='http://www.example.com'>example</a>",
+                option3: "<a url='http://www.example.com'>example</a>",
+                option4: "<a>B</a>",
+                answer: "ans2"
+            },
+            {
+                Question: "What is CSS?",
+                option1: "CSS is a style sheet language",
+                option2: "CSS is designed to separate the presentation and content, including layout, colors, and fonts",
+                option3: "CSS is the language used to style the HTML documents",
+                option4: "All of the mentioned",
+                answer: "ans4"
+            },
+            {
+                Question: "Which of the following tag is used to embed css in html page?",
+                option1: "<CSS>",
+                option2: "<!Doctype html>",
+                option3: "<style>",
+                option4: "<script>",
+                answer: "ans3"
+            },
+            {
+                Question: "Which of the following CSS framework is used to create a responsive design?",
+                option1: "django",
+                option2: "rails",
+                option3: "larawell",
+                option4: "bootstrap",
+                answer: "ans4"
+            },
+            {
+                Question: "Which of the following is the correct way to apply CSS Styles?",
+                option1: "in an external CSS file",
+                option2: " inside an HTML element",
+                option3: " inside the <head> section of an HTML page",
+                option4: "all of the mentioned",
+                answer: "ans4"
+            },
+            {
+                Question: "Which of the following is not the property of the CSS box model?",
+                option1: "margin",
+                option2: "color",
+                option3: "width",
+                option4: "height",
+                answer: "ans2"
+            },
+            {
+                Question: "What is JavaScript?",
+                option1: "JavaScript is a scripting language used to make the website interactive",
+                option2: "JavaScript is an assembly language used to make the website interactive",
+                option3: "JavaScript is a compiled language used to make the website interactive",
+                option4: "None of the mentioned",
+                answer: "ans1"
+            },
+            {
+                Question: "Which symbol is used separate JavaScript statements?",
+                option1: "Comma (,)",
+                option2: "Colon (:)",
+                option3: "Hyphen (_)",
+                option4: "Semicolon (;)",
+                answer: "ans4"
+            },
+            {
+                Question: " Which JavaScript method is used to write HTML output?",
+                option1: "document.write()",
+                option2: "document.output()",
+                option3: "console.log()",
+                option4: "document.writeHTML()",
+                answer: "ans1"
+            },
+            {
+                Question: " Which JavaScript method is used to write on browser's console?",
+                option1: "console.write()",
+                option2: "console.output()",
+                option3: "console.log()",
+                option4: "console.writeHTML()",
+                answer: "ans3"
+            },
+            {
+                Question: " Which type of JavaScript language is _____?",
+                option1: "Object-oriented",
+                option2: "Object-based",
+                option3: "Functional programming",
+                option4: "All of the above",
+                answer: "ans2"
+            }
+        ]
+
+        let advanced = [
+
+            {
+                Question: "What is DOM in HTML?",
+                option1: "Language dependent application programming",
+                option2: "Hierarchy of objects in ASP.NET",
+                option3: "Application programming interface",
+                option4: "Convention for representing and interacting with objects in html documents",
+                answer: "ans4"
+            },
+            {
+                Question: "How do we write comments in HTML?",
+                option1: "</…….>",
+                option2: "<!……>",
+                option3: "</……/>",
+                option4: "<…….!>",
+                answer: "ans2"
+            },
+            {
+                Question: "Which of the following is not a HTML5 tag?",
+                option1: "<track>",
+                option2: "<video>",
+                option3: "<slider>",
+                option4: "<source>",
+                answer: "ans3"
+            },
+            {
+                Question: " Which of the following elements in HTML5 defines video or movie content?",
+                option1: "<video>",
+                option2: "<movie>",
+                option3: "<audio>",
+                option4: "<media>",
+                answer: "ans1"
+            },
+            {
+                Question: " Which HTML tag is used to insert an image?",
+                option1: "<img url=”htmllogo.jpg” />",
+                option2: "<img alt=”htmllogo.jpg” />",
+                option3: "<img src=”htmllogo.jpg” />",
+                option4: "<img link=”htmllogo.jpg” />",
+                answer: "ans3"
+            },
+            {
+                Question: " Which character is used to represent when a tag is closed in HTML?",
+                option1: "#",
+                option2: "/",
+                option3: "!",
+                option4: "*",
+                answer: "ans2"
+            },  
+            {
+                Question: " In HTML, which attribute is used to create a link that opens in a new window tab?",
+                option1: "src=”_blank”",
+                option2: "alt=”_blank”",
+                option3: "target=”_self”",
+                option4: "target=”_blank”",
+                answer: "ans4"
+            },
+            {
+                Question: "How can we select an element with a specific ID in CSS?",
+                option1: "#",
+                option2: ".",
+                option3: "^",
+                option4: "*",
+                answer: "ans1"
+            },
+            {
+                Question: "Which of the following CSS property is used to set the color of the text?",
+                option1: "text-decoration",
+                option2: "pallet",
+                option3: "colour",
+                option4: "color",
+                answer: "ans4"
+            }, 
+            {
+                Question: "Which of the following is an appropriate value for the overflow element?",
+                option1: "scroll",
+                option2: "hidden",
+                option3: "auto",
+                option4: "all of the mentioned",
+                answer: "ans4"
+            },
+            {
+                Question: "Which of the following CSS property is used to specify table borders in CSS?",
+                option1: "table:border",
+                option2: "table",
+                option3: "border",
+                option4: "none of the mentioned",
+                answer: "ans3"
+            },    
+            {
+                Question: "Which of the following CSS Property sets the stacking order of positioned elements?",
+                option1: "y-index",
+                option2: "z-index",
+                option3: "x-index",
+                option4: "all of the mentioned",
+                answer: "ans2"
+            },  
+            {
+                Question: "Which CSS property defines the radius of an element's corners?",
+                option1: "border-radius",
+                option2: "corner",
+                option3: "radius",
+                option4: "border-corner",
+                answer: "ans1"
+            },
+            {
+                Question: "Arrays in JavaScript are defined by which of the following statements?",
+                option1: "It is an ordered list of values",
+                option2: "It is an ordered list of objects",
+                option3: "It is an ordered list of string",
+                option4: "It is an ordered list of functions",
+                answer: "ans1"
+            }, 
+            {
+                Question: "How many keywords are there in JavaScript to declare variables or constants?",
+                option1: "1",
+                option2: "3",
+                option3: "4",
+                option4: "2",
+                answer: "ans2"
+            }, 
+            {
+                Question: "What is the default value of an uninitialized variable?",
+                option1: "0",
+                option2: "undefined",
+                option3: "null",
+                option4: "NaN",
+                answer: "ans2"
+            }, 
+            {
+                Question: " JavaScript arrays are written with _____.",
+                option1: "round brackets ()",
+                option2: "curly brackets {}",
+                option3: 'double quotes ""',
+                option4: "square brackets []",
+                answer: "ans4"
+            }, 
+            {
+                Question: " JavaScript objects are written with _____.?",
+                option1: "curly brackets {}",
+                option2: "round brackets ()",
+                option3: "square brackets []",
+                option4: 'double quotes ""',
+                answer: "ans1"
+            }, 
+            {
+                Question: " Which JavaScript method is used to create a new array with array elements that passes a test?",
+                option1: "forEach()",
+                option2: "map()",
+                option3: "filter()",
+                option4: "forMap()",
+                answer: "ans3"
+            }, 
+            {
+                Question: " What will be the output of the following JavaScript code? document.write(Math.round(107.5))",
+                option1: "107.5",
+                option2: "107",
+                option3: "108",
+                option4: "107.00",
+                answer: "ans3"
+            }, 
+        ]
+
+        let Hard = [
+
+            {
+                Question: "Which HTML element is used for YouTube videos?",
+                option1: "<samp>",
+                option2: "<small>",
+                option3: "<frame>",
+                option4: "<iframe>",
+                answer: "ans4"
+            },
+            {
+                Question: "Which tag tells the browser where the page starts and stops?",
+                option1: "<html>",
+                option2: "<body>",
+                option3: "<head>",
+                option4: "<title>",
+                answer: "ans1"
+            },
+            {
+                Question: "Which tag will you add to specify a font for your whole page?",
+                option1: "<targetfont>",
+                option2: "<defaultfont>",
+                option3: "<basefont>",
+                option4: "<font>",
+                answer: "ans2"
+            }
+            ,
+            {
+                Question: "To created a bulleted list, use _____?",
+                option1: "<ol>",
+                option2: "<li>",
+                option3: "<ul>",
+                option4: "None of the above",
+                answer: "ans3"
+            }
+            ,
+            {
+                Question: "Gif and jpg are the two main types of what?",
+                option1: "animated effects",
+                option2: "images",
+                option3: "videos",
+                option4: "None of the above",
+                answer: "ans2"
+            }
+            ,
+            {
+                Question: "Which of the following is underline tag?",
+                option1: "<PRE>",
+                option2: "<UL>",
+                option3: "<U>",
+                option4: "<HR>",
+                answer: "ans3"
+            },
+            {
+                Question: "To change the size of an image in HTML, use",
+                option1: "Pliers",
+                option2: "Bigger and smaller",
+                option3: "Top and bottom",
+                option4: "Height and width",
+                answer: "ans4"
+            }
+            ,
+            {
+                Question: "Which CSS property is used to change the style of the mouse cursor when hovering over an element?",
+                option1: "cursor-style ",
+                option2: "cursor",
+                option3: "mouse-cursor ",
+                option4: "cursor-type ",
+                answer: "ans2"
+            }
+            ,
+            {
+                Question: "What is the purpose of the transform property in CSS?",
+                option1: "It changes the position of an element.",
+                option2: "It applies a 3D effect to an element.",
+                option3: "It animates an element's size. ",
+                option4: "It rotates and scales an element.",
+                answer: "ans4"
+            }
+            ,
+            {
+                Question: "What is the purpose of the @media rule in CSS?",
+                option1: "It applies styles based on screen size and other media features.",
+                option2: "It allows the use of variables in CSS. ",
+                option3: "It defines custom fonts for different screen sizes.",
+                option4: "It applies styles based on user interactions.",
+                answer: "ans1"
+            }
+            ,
+            {
+                Question: "What is the purpose of the opacity property in CSS?",
+                option1: "It creates a blur effect on an element.",
+                option2: "It changes the transparency of an element.",
+                option3: "It adjusts the brightness of an element. ",
+                option4: "It sets the reflection of an element.",
+                answer: "ans2"
+            }
+            ,
+            {
+                Question: "What is the purpose of the transform property in CSS?",
+                option1: "It changes the position of an element.",
+                option2: "It applies a 3D effect to an element.",
+                option3: "It animates an element's size. ",
+                option4: "It rotates and scales an element.",
+                answer: "ans4"
+            }
+            ,
+            {
+                Question: "What is the purpose of the overflow property in CSS?",
+                option1: "It controls the visibility of an element's content.",
+                option2: "It sets the shadow effect of an element.",
+                option3: "It adjusts the space between elements ",
+                option4: "It creates a gradient background for an element.",
+                answer: "ans1"
+            }
+            ,
+            {
+                Question: "What is the purpose of the flexbox layout in CSS? ",
+                option1: "It creates a grid-like layout for elements.",
+                option2: "It aligns elements based on their baseline.",
+                option3: "It arranges elements in a single row or column. ",
+                option4: "It creates complex 3D layouts.",
+                answer: "ans1"
+            }
+            ,
+            {
+                Question: "Which of the following is block scoped?",
+                option1: "Var",
+                option2: "Let",
+                option3: "Const",
+                option4: "Both b and c",
+                answer: "ans4"
+            }
+            ,
+            {
+                Question: "What are Functions in JavaScript?",
+                option1: "Functions are basically a statements which returns a constant value.",
+                option2: "Functions are basically a set of statements that perform some task",
+                option3: "Functions are one of the data types in JavaScript ",
+                option4: "All of these",
+                answer: "ans2"
+            }
+            ,
+            {
+                Question: "Which of the following is an array method?",
+                option1: "Map",
+                option2: "Filter",
+                option3: "Reduce",
+                option4: "All of these",
+                answer: "ans4"
+            }
+            ,
+            {
+                Question: "Which of the following is considered a first class citizen in JavaScript?",
+                option1: "Functions",
+                option2: "Class",
+                option3: "Array",
+                option4: "Object",
+                answer: "ans1"
+            }
+            ,
+            {
+                Question: "What will be the output of the below code snippet? let{name,age}={name:'abc',age:1,id:1} console.log(name,age)",
+                option1: "Throws error",
+                option2: "Null null",
+                option3: "Abc 1",
+                option4: "Undefined undefined",
+                answer: "ans3"
+            }
+            ,
+            {
+                Question: "Which array method is used to iterate on all the array elements and perform some task/transformation on them and return the new array?",
+                option1: "Map",
+                option2: "Filter",
+                option3: "Reduce",
+                option4: "ForEach",
+                answer: "ans1"
+            }
+        ]
+
+        let timerBox = document.querySelector(".timer")
+        
+        
+
+        let clickSound = new Audio("./sound/sound.mp3")
+        let correctSound = new Audio("./sound/correct.mp3")
+        let wrongSound = new Audio("./sound/wrong2.mp3")
+        let congratulations = new Audio("./sound/congratulation.mp3")
+        let over = new Audio("./sound/gameover.mp3")
+
+        let questions;
+        let time = 0
+        let count = 0
+        function easy() {
+            let dis = document.querySelector('.main-display')
+            let active = document.querySelector('.main-game')
+            dis.classList.add('disable')
+            active.classList.remove('disable')
+            questions = beginners
+            loadQuestion()
+        }
+        function normal() {
+            let dis = document.querySelector('.main-display')
+            let active = document.querySelector('.main-game')
+            dis.classList.add('disable')
+            active.classList.remove('disable')
+            questions = advanced
+
+            let id = setInterval(timer,1000)
+            count = 30
+            time = 30
+        function timer(){
+            count--
+            if(count == 0){
+                clearInterval(id)
+                gameOver.classList.remove("none")
+                    over.play();
+                    gameOver.innerHTML = `<h1>Game Over</h1>
+                <button class="btn" onclick="location.reload()">RESTART</button>
+                `
+            }else{
+            
+                timerBox.innerHTML = `<h1>${count}</h1>`
+
+            }
+        }
+            loadQuestion()
+        }
+        function hard() {
+            let dis = document.querySelector('.main-display')
+            let active = document.querySelector('.main-game')
+            dis.classList.add('disable')
+            active.classList.remove('disable')
+            questions = Hard
+            let id = setInterval(timer,1000)
+            count = 20
+            time = 20
+        function timer(){
+            count--
+            if(count == 0){
+                clearInterval(id)
+                gameOver.classList.remove("none")
+                    over.play();
+                    gameOver.innerHTML = `<h1>Game Over</h1>
+                <button class="btn" onclick="location.reload()">RESTART</button>
+                `
+            }else{
+            
+                timerBox.innerHTML = `<h1>${count}</h1>`
+
+            }
+        }
+            loadQuestion()
+        }
+
+        let h1 = document.getElementById('heading')
+        let option1 = document.getElementById('option1')
+        let option2 = document.getElementById('option2')
+        let option3 = document.getElementById('option3')
+        let option4 = document.getElementById('option4')
+        let level = 0;
+        let score = 0;
+        let wrong = 0;
+        let lifeLine = 3;
+        let life = document.querySelector(".life")
+        let gameBoard = document.querySelector(".game-Questions")
+        let sound = document.querySelector("audio")
+        
+        
+
+        function loadQuestion() {
+            life.innerHTML = `<h2> LifeLine ${lifeLine} </h2>`
+
+            h1.innerText = questions[level].Question
+            option1.innerText = questions[level].option1
+            option2.innerText = questions[level].option2
+            option3.innerText = questions[level].option3
+            option4.innerText = questions[level].option4
+        }
+
+        let answers = document.querySelectorAll(".radio")
+
+        answers.forEach((answer)=>{
+            answer.addEventListener("click",()=>{
+                clickSound.load()
+                clickSound.play();
+            })
+           
+        })
+
+        function answerCheck() {
+            let answer;
+            answers.forEach((curAnsEle) => {
+                if (curAnsEle.checked) {
+                    answer = curAnsEle.id
+                }
+            })
+            return answer
+        }
+
+        function unchecked() {
+            answers.forEach((curAnsEle) => {
+                curAnsEle.checked = false;
+            })
+        }
+
+        let checkFill = true;
+       
+        let submit = document.getElementById('submit')
+        let gameOver = document.querySelector('#game-over')
+
+        submit.addEventListener('click', function () {
+            
+            let allUncheck = true
+            answers.forEach((element)=>{
+                if (element.checked) {
+                    allUncheck = false
+                }
+            })
+            if (allUncheck) {
+                
+                return
+            }
+            count = time;
+            console.log(time);
+            let checkedAnswer = answerCheck()
+            if (checkedAnswer == questions[level].answer) {
+                correctSound.load();
+                correctSound.play();
+                score++;
+            } else {
+               if(checkFill){
+                wrongSound.load();
+                wrongSound.play();
+                   lifeLine--
+                   wrong++
+               }
+                
+                if (wrong == 3) {
+                    gameOver.classList.remove("none")
+                    over.play();
+                    gameOver.innerHTML = `<h1 class="h1GameOver">Game Over</h1>
+                <button class="btn" onclick="location.reload()">RESTART</button>
+                `
+                }
+            }
+
+            unchecked()
+            if(checkFill){
+                level++
+            }
+            if (level < questions.length) {
+                loadQuestion()
+            } else {
+                life.innerHTML = `<h2> LifeLine ${lifeLine} </h2>`
+                gameOver.classList.remove("none")
+                congratulations.play();
+                gameOver.innerHTML = `<h1 class="congratulation">Congratulations</h1>
+                <h1 class="congratulation"> Your Score ${score}/${questions.length}</h1>
+                <button class="btn" onclick="location.reload()">RESTART</button>
+                `
+            }
+        })
+        
+    </script>
+</body>
+</html>

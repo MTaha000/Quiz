@@ -1,0 +1,148 @@
+*{
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+}
+
+.main-display{
+    width: 100vw;
+    height: 100vh;
+    background-color: cadetblue;
+    display: flex;
+    justify-content: space-evenly;
+    flex-direction: column;
+    align-items: center;
+}
+.main-display h1{
+font-size: 100px;
+}
+.buttons{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 300px;
+}
+.main-display button{
+    width: 250px;
+    height: 50px;
+    font-size: 30px;
+    border-radius: 20px;
+}
+.disable{
+    display: none !important;
+}
+.main-game{
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: cadetblue;
+}
+.notification{
+    display: flex;
+    justify-content: space-between;
+}
+.timer{
+    margin-top: 20px;
+    margin-right: 50px;
+}
+.game-Questions{
+    width: 50%;
+    height: 80%;
+    background-color: aliceblue;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border-radius: 30px;
+    box-shadow: 5px 10px black;
+}
+.game-Questions label{
+    font-size: 25px;
+    font-weight: bold;
+    width: 100%;
+    height: 20%;
+    margin-right: 12px;
+}
+.game{
+    width: 100%;
+    height: 80%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+#heading{
+    display: flex;
+    font-size: 50px;
+    border: 2px solid white;
+    padding: 20px 30px;
+    border-radius: 30px;
+}
+.options{
+   display: flex;
+    width: 100%;
+}
+.radio{
+    width: 30px;
+    height: 20px;
+    margin: 0px 20px;
+}
+#submit{
+
+    width: 150px;
+    padding: 10px;
+    font-size: 25px;
+    font-weight: 800;
+    border-radius: 20px;
+    margin: 20px auto;
+    background-color: rgb(57, 77, 114) ;
+    color: aliceblue;
+
+}
+
+.btn{
+    padding: 15px;
+    width: 150px;
+    font-size: 23px;
+    box-shadow: 3px 5px 5px 3px black;
+    font-weight: bold;
+    border-radius: 20px;
+    margin-top: 80px;
+    background-color: rgb(57, 77, 114);
+    color: aliceblue;
+}
+.none{
+    display: none !important;
+}
+#game-over{
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgb(0, 0, 0,0.5);
+    z-index: 99;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    
+}
+#game-over h1{
+    padding: 10px 40px;
+    border-radius: 50px;
+    font-size: 100px;
+    background:rgba(24, 0, 0, 0.44);
+    color: rgb(224, 118, 118);
+}
+.life{
+    margin-top: 20px;
+    margin-left: 20px;
+}
+.congratulation{
+    color: green !important;
+    background: rgba(240, 238, 238, 0.88) !important;
+}
